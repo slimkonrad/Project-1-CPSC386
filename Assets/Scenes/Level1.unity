@@ -301,6 +301,7 @@ GameObject:
   - component: {fileID: 255675132}
   - component: {fileID: 255675131}
   - component: {fileID: 255675134}
+  - component: {fileID: 255675135}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -426,6 +427,20 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &255675135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255675130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e82e4e75b4e54847ae7e22683f95b62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraFit
+  levelRenderer: {fileID: 1100996069}
+  padding: 0.25
 --- !u!1 &273216758
 GameObject:
   m_ObjectHideFlags: 0
@@ -667,6 +682,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RockSpawner
   rockPool: {fileID: 370509931}
+  levelRenderer: {fileID: 1100996069}
   spawnInterval: 0.4
   edgeMargin: 1.5
 --- !u!4 &283925940
@@ -1677,11 +1693,7 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 1100996068}
     m_ColliderPaths:
-    - - X: 120000000
-        Y: -50000000
-      - X: 130000000
-        Y: -50000000
-      - X: 130000000
+    - - X: 130000000
         Y: 50000000
       - X: 100000000
         Y: 50000000
@@ -1715,7 +1727,7 @@ CompositeCollider2D:
         Y: 50000000
       - X: -130000000
         Y: -60000000
-      - X: 120000000
+      - X: 130000000
         Y: -60000000
     - - X: 0
         Y: 10000000
@@ -1735,9 +1747,7 @@ CompositeCollider2D:
         Y: -20000000
   m_CompositePaths:
     m_Paths:
-    - - {x: 11.99997, y: -6}
-      - {x: 12.00003, y: -5}
-      - {x: 13, y: -4.999971}
+    - - {x: 12.99997, y: -6}
       - {x: 12.99997, y: 5}
       - {x: 10, y: 4.999971}
       - {x: 9.99997, y: -4}
@@ -2138,6 +2148,16 @@ Tilemap:
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
   - first: {x: 11, y: -6, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 12, y: -6, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 1
@@ -3113,7 +3133,7 @@ Tilemap:
     m_RefCount: 5
     m_Data: {fileID: 11400000, guid: 502b3cc547646d942b1386d43d73b15f, type: 2}
   - serializedVersion: 2
-    m_RefCount: 85
+    m_RefCount: 86
     m_Data: {fileID: 11400000, guid: e25f38821b76cd24fb235027d27c117f, type: 2}
   - serializedVersion: 2
     m_RefCount: 29
@@ -3126,7 +3146,7 @@ Tilemap:
     m_RefCount: 5
     m_Data: {fileID: 1035090941, guid: 24cdc4dd915639842ba25983815769df, type: 3}
   - serializedVersion: 2
-    m_RefCount: 85
+    m_RefCount: 86
     m_Data: {fileID: -3333449033900058284, guid: 24cdc4dd915639842ba25983815769df, type: 3}
   - serializedVersion: 2
     m_RefCount: 29
@@ -3136,7 +3156,7 @@ Tilemap:
     m_Data: {fileID: 1805446253, guid: 24cdc4dd915639842ba25983815769df, type: 3}
   m_TileMatrixArray:
   - serializedVersion: 2
-    m_RefCount: 121
+    m_RefCount: 122
     m_Data:
       e00: 1
       e01: 0
@@ -3156,7 +3176,7 @@ Tilemap:
       e33: 1
   m_TileColorArray:
   - serializedVersion: 2
-    m_RefCount: 121
+    m_RefCount: 122
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -3239,7 +3259,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Quit
+  m_text: 'Quit to Menu
 
 '
   m_isRightToLeft: 0
@@ -4184,7 +4204,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000030517578}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1948470092

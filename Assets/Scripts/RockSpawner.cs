@@ -1,14 +1,16 @@
 using UnityEngine;
 
 /// <summary>
-/// Drops rocks from just above the top of the screen at random horizontal positions.
+/// Drops rocks from just above the top of the screen at random horizontal positions inside the level.
 /// Rocks come from a SimplePool instead of being created and destroyed.
 /// </summary>
 public class RockSpawner : MonoBehaviour
 {
     [SerializeField] private SimplePool rockPool;
+    [Tooltip("The Ground tilemap's TilemapRenderer. Rocks only spawn above this area.")]
+    [SerializeField] private Renderer levelRenderer;
     [SerializeField] private float spawnInterval = 0.8f;
-    [Tooltip("How far in from the screen's left and right edges rocks can appear, so they don't spawn inside the walls.")]
+    [Tooltip("How far in from the level's left and right edges rocks can appear, so they don't spawn inside the walls.")]
     [SerializeField] private float edgeMargin = 1.5f;
 
     private float timer;
@@ -18,14 +20,13 @@ public class RockSpawner : MonoBehaviour
 
     private void Start()
     {
-        // Work out the spawn area from what the camera can see.
-        Camera cam = Camera.main;
-        Vector3 bottomLeft = cam.ViewportToWorldPoint(new Vector3(0f, 0f, 0f));
-        Vector3 topRight = cam.ViewportToWorldPoint(new Vector3(1f, 1f, 0f));
+        // Spawn across the level's width, just above whatever the camera can see.
+        Bounds level = levelRenderer.bounds;
+        float cameraTop = Camera.main.ViewportToWorldPoint(new Vector3(0f, 1f, 0f)).y;
 
-        minX = bottomLeft.x + edgeMargin;
-        maxX = topRight.x - edgeMargin;
-        spawnY = topRight.y + 1f;
+        minX = level.min.x + edgeMargin;
+        maxX = level.max.x - edgeMargin;
+        spawnY = cameraTop + 1f;
     }
 
     private void Update()
